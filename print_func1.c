@@ -36,11 +36,11 @@ int print_string(va_list types, char buffer[],
 	int length = 0, i;
 	char *str = va_arg(types, char *);
 
-	NOTUSED(buffer);
-	NOTUSED(flags);
-	NOTUSED(width);
-	NOTUSED(precision);
-	NOTUSED(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 	if (str == NULL)
 	{
 		str = "(null)";
@@ -56,7 +56,7 @@ int print_string(va_list types, char buffer[],
 
 	if (width > length)
 	{
-		if (flags & MINUS_FLAG)
+		if (flags & F_MINUS)
 		{
 			write(1, &str[0], length);
 			for (i = width - length; i > 0; i--)
@@ -88,13 +88,12 @@ int print_string(va_list types, char buffer[],
 int print_percent(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	NOTUSED(types);
-	NOTUSED(buffer);
-	NOTUSED(flags);
-	NOTUSED(width);
-	NOTUSED(precision);
-	NOTUSED(size);
-
+	UNUSED(types);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 	return (write(1, "%%", 1));
 }
 
@@ -112,7 +111,7 @@ int print_percent(va_list types, char buffer[],
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int i = BUFFSIZE - 2;
+	int i = BUFF_SIZE - 2;
 	int is_negative = 0;
 	long int n = va_arg(types, long int);
 	unsigned long int num;
@@ -122,7 +121,7 @@ int print_int(va_list types, char buffer[],
 	if (n == 0)
 		buffer[i--] = '0';
 
-	buffer[BUFFSIZE - 1] = '\0';
+	buffer[BUFF_SIZE - 1] = '\0';
 	num = (unsigned long int)n;
 
 	if (n < 0)
@@ -160,11 +159,11 @@ int print_binary(va_list types, char buffer[],
 	unsigned int a[32];
 	int count;
 
-	NOTUSED(buffer);
-	NOTUSED(flags);
-	NOTUSED(width);
-	NOTUSED(precision);
-	NOTUSED(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	n = va_arg(types, unsigned int);
 	m = 2147483648; /* (2 ^ 31) */
@@ -187,4 +186,3 @@ int print_binary(va_list types, char buffer[],
 	}
 	return (count);
 }
-

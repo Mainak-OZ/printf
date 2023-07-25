@@ -15,19 +15,19 @@ int print_pointer(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	char extra_c = 0, padd = ' ';
-	int ind = BUFFSIZE - 2, length = 2, padd_start = 1; /* length=2, for '0x' */
+	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1; /* length=2, for '0x' */
 	unsigned long num_addrs;
 	char map_to[] = "0123456789abcdef";
 	void *addrs = va_arg(types, void *);
 
-	NOTUSED(width);
-	NOTUSED(size);
+	UNUSED(width);
+	UNUSED(size);
 
 	if (addrs == NULL)
 		return (write(1, "(nil)", 5));
 
-	buffer[BUFFSIZE - 1] = '\0';
-	NOTUSED(precision);
+	buffer[BUFF_SIZE - 1] = '\0';
+	UNUSED(precision);
 
 	num_addrs = (unsigned long)addrs;
 
@@ -38,11 +38,11 @@ int print_pointer(va_list types, char buffer[],
 		length++;
 	}
 
-	if ((flags & ZERO_FLAG) && !(flags & MINUS_FLAG))
+	if ((flags & F_ZERO) && !(flags & F_MINUS))
 		padd = '0';
-	if (flags & PLUS_FLAG)
+	if (flags & F_PLUS)
 		extra_c = '+', length++;
-	else if (flags & SPACE_FLAG)
+	else if (flags & F_SPACE)
 		extra_c = ' ', length++;
 
 	ind++;
@@ -69,10 +69,10 @@ int print_non_printable(va_list types, char buffer[],
 	int i = 0, offset = 0;
 	char *str = va_arg(types, char *);
 
-	NOTUSED(flags);
-	NOTUSED(width);
-	NOTUSED(precision);
-	NOTUSED(size);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	if (str == NULL)
 		return (write(1, "(null)", 6));
@@ -110,16 +110,16 @@ int print_reverse(va_list types, char buffer[],
 	char *str;
 	int i, count = 0;
 
-	NOTUSED(buffer);
-	NOTUSED(flags);
-	NOTUSED(width);
-	NOTUSED(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(size);
 
 	str = va_arg(types, char *);
 
 	if (str == NULL)
 	{
-		NOTUSED(precision);
+		UNUSED(precision);
 
 		str = ")Null(";
 	}
@@ -157,11 +157,11 @@ int print_rot13string(va_list types, char buffer[],
 	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	str = va_arg(types, char *);
-	NOTUSED(buffer);
-	NOTUSED(flags);
-	NOTUSED(width);
-	NOTUSED(precision);
-	NOTUSED(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	if (str == NULL)
 		str = "(AHYY)";
