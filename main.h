@@ -8,11 +8,11 @@
 #define BUFFSIZE 1024
 
 /* FLAGS */
-#define MINUS_FLAG 1
-#define PLUS_FLAG 2
-#define ZERO_FLAG 4
-#define HASH_FLAG 8
-#define SPACE_FLAG 16
+#define F_MINUS 1
+#define F_PLUS 2
+#define F_ZERO 4
+#define F_HASH 8
+#define F_SPACE 16
 
 /* SIZES */
 #define S_LONG 2
@@ -40,7 +40,7 @@ typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
-va_list ARGS, char buffer[], int flags, int width, int precision, int size);
+va_list args, char buffer[], int flags, int width, int precision, int size);
 
 /****** FUNCTIONS ******/
 
